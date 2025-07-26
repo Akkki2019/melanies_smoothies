@@ -146,7 +146,7 @@ if ingredients:
     ingredients_string = ', '.join(ingredients)
 
     for fruit in ingredients:
-        st.subheader(f"{fruit} Nutrition Info")
+        # st.subheader(f"{fruit} Nutrition Info")
         query = fruit.lower()
         url = f"https://api.nal.usda.gov/fdc/v1/foods/search?query={query}&api_key={API_KEY}"
         response = requests.get(url)
