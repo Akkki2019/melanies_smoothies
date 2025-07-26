@@ -3,6 +3,8 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 import requests
 
+API_KEY = "N6CHqOh7XMnLBRpMgBHqDp1TlejHtkH2jkE1TecY"
+
 # Write directly to the app
 st.title(f":cup_with_straw:  Customize Your Smoothie !:cup_with_straw:")
 st.write(
@@ -26,7 +28,7 @@ if ingredients_list:
     for fruit_chosen in ingredients_list:
         ingredients_string+=fruit_chosen+' '
         st.subheader(fruit_chosen+'Nutrition Information')
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/{fruit_chosen.lower()}")
+        smoothiefroot_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?query={fruit_chosen}&api_key={API_KEY}")
         st_df=st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
 
 
