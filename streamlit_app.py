@@ -137,8 +137,8 @@ cnx = st.connection("snowflake")
 session = cnx.session()
 fruit_df = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"),col("SEARCH_ON"))
 pd_df=fruit_df.to_pandas()
-st.dataframe(pd_df)
-st.stop()
+# st.dataframe(pd_df)
+# st.stop()
 
 fruit_list = [row["FRUIT_NAME"] for row in fruit_df.collect()]
 
@@ -151,6 +151,8 @@ if ingredients:
 
     for fruit in ingredients:
         # st.subheader(f"{fruit} Nutrition Info")
+        search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
+        st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
         query = fruit.lower()
         url = f"https://api.nal.usda.gov/fdc/v1/foods/search?query={query}&api_key={API_KEY}"
         response = requests.get(url)
