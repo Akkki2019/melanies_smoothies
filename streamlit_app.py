@@ -3,7 +3,7 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 import requests
 
-API_KEY = "N6CHqOh7XMnLBRpMgBHqDp1TlejHtkH2jkE1TecY"
+API_KEY = "KNL2dMUR1G1rFbyhMisAeSebjsZTmRFwrCNSixLD"
 
 # Write directly to the app
 st.title(f":cup_with_straw:  Customize Your Smoothie !:cup_with_straw:")
