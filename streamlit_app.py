@@ -135,7 +135,7 @@ if name_on_order:
 # --- Connect to Snowflake ---
 cnx = st.connection("snowflake")
 session = cnx.session()
-fruit_df = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"))
+fruit_df = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"),col("SEARCH_ON"))
 fruit_list = [row["FRUIT_NAME"] for row in fruit_df.collect()]
 
 # --- Select ingredients ---
