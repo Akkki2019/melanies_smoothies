@@ -136,6 +136,10 @@ if name_on_order:
 cnx = st.connection("snowflake")
 session = cnx.session()
 fruit_df = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"),col("SEARCH_ON"))
+pd_df=fruit_df.to_pandas()
+st.dataframe(pd_df)
+st.stop()
+
 fruit_list = [row["FRUIT_NAME"] for row in fruit_df.collect()]
 
 # --- Select ingredients ---
