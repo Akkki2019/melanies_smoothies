@@ -156,8 +156,8 @@ if ingredients:
             foods = data.get("foods", [])
             if foods and "foodNutrients" in foods[0]:
                 nutrients = foods[0]["foodNutrients"]
-                df = pd.DataFrame(nutrients)[["nutrientName", "value", "unitName"]]
-                st.dataframe(df, use_container_width=True)
+                # df = pd.DataFrame(nutrients)[["nutrientName", "value", "unitName"]]
+                # st.dataframe(df, use_container_width=True)
             else:
                 st.warning(f"No nutrition info found for {fruit}")
         else:
