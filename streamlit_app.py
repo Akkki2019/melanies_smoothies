@@ -154,9 +154,9 @@ if ingredients:
         search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit, 'SEARCH_ON'].iloc[0]
         # st.write('The search value for ', fruit,' is ', search_on, '.')
         
-        query = fruit.lower()
+        query = search_on.lower()
         url = f"https://api.nal.usda.gov/fdc/v1/foods/search?query={query}&api_key={API_KEY}"
-        response = requests.get(url+search_on)
+        response = requests.get(url)
 
         if response.status_code == 200:
             data = response.json()
@@ -164,6 +164,7 @@ if ingredients:
             if foods and "foodNutrients" in foods[0]:
                 nutrients = foods[0]["foodNutrients"]
                 df = pd.DataFrame(nutrients)[["nutrientName", "value", "unitName"]]
+                st.subheader(f"{fruit} Nutrition Info")
                 st.dataframe(df, use_container_width=True)
             else:
                 st.warning(f"No nutrition info found for {fruit}")
